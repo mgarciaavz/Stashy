@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Notify</title>               
+
+        <!--Stashy.-->                
+        <link rel="stylesheet" href="../docs/public/Content/bootstrap.css" type="text/css"/>        
+        <!--Stashy.-->   
+        <link rel="stylesheet/less" type="text/css" href="../less/Stashy.less"/>
+        <script type="text/javascript" src="../src/less.js"></script>
+        
+        <meta name="viewport" content="width=device-width" />
+        
+        <style>            
+            input, select {
+                display : block;
+            }
+            
+            .inline input {
+                display : inline;
+            }
+        </style>
+    </head>
+    <body>  
+        <p><button onclick="alert('Método 1')">Alert - Método 1</button> <pre>&lt;button onclick="alert('Método 1')"&gt;Método 1&lt;/button&gt;</pre></p>
+        <p><button onclick="mostrar_alert()">Alert - Método 2</button><pre>&lt;button onclick="mostrar_alert()"&gt;Método 2&lt;/button&gt;</pre></p>
+        <p><button onclick="confirm('Lorem ipsum')">Confirm</button>
+
+        <script type="text/javascript" src="../src/jquery.js"></script>        
+        <script type="text/javascript" src="../src/Stashy.Notify.js"></script>       
+        <script>
+            function mostrar_alert() {
+                alert('Método 2');
+            }
+
+            jQuery(function() {
+                window.alert = function(message) {
+                    Stashy.Notify({
+                        title : 'alert() capturado',
+                        content : message,
+                        titleSize : 2,
+                        style : 'error',
+                        contentType : 'inline',
+                        animDuration : 'fast',
+                        closeArea : 'button',
+                        activeDuration : ''
+                    }).bar('top');
+
+                    return false;
+                };
+
+                window.confirm = function(message) {
+                    Stashy.Notify({
+                        title : 'confirm() capturado',
+                        content : message,
+                        titleSize : 2,
+                        style : 'error',
+                        contentType : 'inline',
+                        animDuration : 'fast',
+                        closeArea : 'button',
+                        activeDuration : ''
+                    }).bar('top');
+
+                    return false;
+                };
+            });
+        </script>
+    </body>
+</html>
